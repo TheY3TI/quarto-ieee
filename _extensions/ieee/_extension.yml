@@ -35,6 +35,7 @@ contributes:
       pdf-engine: pdflatex
       keep-tex: true
       toc: false
+      color: false
       df-print: kable
       latex-auto-install: true
       template: ieee-template.tex
@@ -47,6 +48,10 @@ contributes:
         - partials/before-body.tex
         - partials/before-bib.tex
         - partials/after-body.tex
+      format-resources:
+        - ieeecolor.cls
+        - generic.sty
+        - LOGO-generic-web.eps
       header-includes: |
         \usepackage{physics}
         \usepackage[version=3]{mhchem}

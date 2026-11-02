@@ -55,6 +55,9 @@ $doc-class.tex()$
 % If IEEEtran.cls has not been installed into the LaTeX system files,
 % manually specify the path to it like:
 % \documentclass[journal]{../sty/IEEEtran}
+$if(color)$
+\usepackage{generic}
+$endif$
 \usepackage[cmex10]{amsmath}
 \usepackage{amssymb}
 $if(linestretch)$
@@ -164,9 +167,12 @@ $if(indent)$
 $else$
 \makeatletter
 \parindent    1.0em
+$if(color)$
+$else$
 \ifCLASSOPTIONcompsoc
   \parindent    1.5em
 \fi
+$endif$
 \makeatother
 $endif$
 $if(verbatim-in-note)$

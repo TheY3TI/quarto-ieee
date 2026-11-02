@@ -1,8 +1,11 @@
 % Can use something like this to put references on a page
 % by themselves when using endfloat and the captionsoff option.
+$if(color)$
+$else$
 \ifCLASSOPTIONcaptionsoff
   \newpage
 \fi
+$endif$
 
 % trigger a \newpage just before the given reference
 % number - used to balance the columns on the last page

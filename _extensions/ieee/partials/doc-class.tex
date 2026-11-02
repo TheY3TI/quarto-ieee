@@ -1,16 +1,37 @@
-\documentclass[
-$if(fontsize)$
-  $fontsize$,
-$endif$
-$if(papersize)$
-  $papersize$paper,
-$endif$
-$for(classoption)$
-  $classoption$$sep$,
-$endfor$
-$if(journaltype)$
-  $journaltype$,
+$if(color)$
+  \documentclass[
+  twoside,
+  web,
+  $if(fontsize)$
+    $fontsize$,
+  $endif$
+  $if(papersize)$
+    $papersize$paper,
+  $endif$
+  $for(classoption)$
+    $classoption$$sep$,
+  $endfor$
+  $if(journaltype)$
+    $journaltype$,
+  $else$
+    journal,
+  $endif$
+  ]{ieeecolor}
 $else$
-  journal,
+  \documentclass[
+  $if(fontsize)$
+    $fontsize$,
+  $endif$
+  $if(papersize)$
+    $papersize$paper,
+  $endif$
+  $for(classoption)$
+    $classoption$$sep$,
+  $endfor$
+  $if(journaltype)$
+    $journaltype$,
+  $else$
+    journal,
+  $endif$
+  ]{IEEEtran}
 $endif$
-]{IEEEtran}

@@ -20,3 +20,14 @@ examples/*_files/
 
 /.quarto/
 _freeze/
+
+**/*.quarto_ipynb
+
+/LOGO-generic-web.eps
+LOGO-generic-web-eps-converted-to.pdf
+/generic.sty
+/ieeecolor.cls
+
+*.aux
+*.log
+*.synctex.gz

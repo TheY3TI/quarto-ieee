@@ -45,12 +45,16 @@
 % should be used if it is desired that the figures are to be displayed in
 % draft mode.
 %
-\documentclass[
-  journal,
-]{IEEEtran}%
+  \documentclass[
+  twoside,
+  web,
+            journal,
+    ]{ieeecolor}
+%
 % If IEEEtran.cls has not been installed into the LaTeX system files,
 % manually specify the path to it like:
 % \documentclass[journal]{../sty/IEEEtran}
+\usepackage{generic}
 \usepackage[cmex10]{amsmath}
 \usepackage{amssymb}
 \usepackage{iftex}
@@ -74,9 +78,6 @@
 }{}
 \makeatletter
 \parindent    1.0em
-\ifCLASSOPTIONcompsoc
-  \parindent    1.5em
-\fi
 \makeatother
 \usepackage{xcolor}
 \setlength{\emergencystretch}{3em} % prevent overfull lines
@@ -92,9 +93,8 @@
   \renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
 \fi
 
-
-\providecommand{\tightlist}{%
-  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}\usepackage{longtable,booktabs,array}
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
 \usepackage{etoolbox}
@@ -106,17 +106,21 @@
 \makesavenoteenv{longtable}
 \usepackage{graphicx}
 \makeatletter
-\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
-\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
-\makeatother
-% Scale images if necessary, so that they will not overflow the page
-% margins by default, and it is still possible to overwrite the defaults
-% using explicit options in \includegraphics[width, height, ...]{}
-\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
 % Set default figure placement to htbp
-\makeatletter
 \def\fps@figure{htbp}
 \makeatother
+
+
 % definitions for citeproc citations
 \NewDocumentCommand\citeproctext{}{}
 \NewDocumentCommand\citeproc{mm}{%
@@ -150,6 +154,18 @@
 \newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{\strut#1\strut}}
 \newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{\strut#1\strut}}
 \newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+
+
+
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+
+
+ 
+
 
 \usepackage{physics}
 \usepackage[version=3]{mhchem}
@@ -197,6 +213,8 @@
 \AtBeginDocument{\renewcommand*{\proofname}{Proof}}
 \newtheorem*{remark}{Remark}
 \newtheorem*{solution}{Solution}
+\newtheorem{refremark}{Remark}[section]
+\newtheorem{refsolution}{Solution}[section]
 \makeatother
 \makeatletter
 \makeatother
@@ -268,7 +286,7 @@ Loire, Bourges, 18800 France%
 \thanks{John Doe is with Anonymous University%
 }
 %by-author.affiliations
-\thanks{Template created June 23, 2023; revised December 20, 2023.}
+\thanks{Template created June 23, 2023; revised november 02, 2026.}
 }
 \begin{document}
 
@@ -373,7 +391,6 @@ on a pull request for a new feature).
 
 For some of the remainder of this sample we will use dummy text to fill
 out paragraphs rather than use live text that may violate a copyright.
-\IEEEpubidadjcol\\
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis cursus
 nisl eget tempor porta. Proin dapibus dictum quam a commodo. Mauris
 congue scelerisque eros a porta. Proin blandit nulla sapien, et pretium
@@ -558,7 +575,7 @@ use div block with \texttt{\#fig-} label to embed your Figures.
 
 \centering{
 
-\includegraphics[width=0.3\textwidth,height=\textheight]{fig1.png}
+\includegraphics[width=0.3\linewidth,height=\textheight,keepaspectratio]{fig1.png}
 
 }
 
@@ -572,7 +589,7 @@ use div block with \texttt{\#fig-} label to embed your Figures.
 
 \centering{
 
-\captionsetup{labelsep=none}\includegraphics{fig1.png}
+\pandocbounded{\includegraphics[keepaspectratio]{fig1.png}}
 
 }
 
@@ -584,7 +601,7 @@ use div block with \texttt{\#fig-} label to embed your Figures.
 
 \centering{
 
-\captionsetup{labelsep=none}\includegraphics{fig1.png}
+\pandocbounded{\includegraphics[keepaspectratio]{fig1.png}}
 
 }
 
@@ -625,7 +642,7 @@ Quarto is a multi-language and it uses \texttt{Knitr} to execute
 
 \centering{
 
-\begin{tabular}[t]{lll}
+\begin{tabular}{lll}
 \toprule
 Col1 & Col2 & Col3\\
 \midrule
@@ -645,7 +662,7 @@ A & G & G\\
 
 \centering{
 
-\begin{tabular}[t]{lll}
+\begin{tabular}{lll}
 \toprule
 Col1 & Col2 & Col3\\
 \midrule
@@ -716,7 +733,7 @@ have a single appendix. \texttt{IEEEtran} state that to do not use
 \section*{References}\label{references}
 \addcontentsline{toc}{section}{References}
 
-\phantomsection\label{refs}
+\protect\phantomsection\label{refs}
 \begin{CSLReferences}{0}{0}
 \bibitem[\citeproctext]{ref-mittelbach2023latex}
 \CSLLeftMargin{{[}1{]} }%
@@ -759,9 +776,6 @@ Available: \url{https://quarto.org/docs/authoring/markdown-basics}.
 
 % Can use something like this to put references on a page
 % by themselves when using endfloat and the captionsoff option.
-\ifCLASSOPTIONcaptionsoff
-  \newpage
-\fi
 
 % trigger a \newpage just before the given reference
 % number - used to balance the columns on the last page

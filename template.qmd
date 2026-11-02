@@ -3,6 +3,7 @@ title: A Sample Article Using `quarto-ieee` for IEEE Journal and Transactions
 format:
   ieee-pdf:
     keep-tex: true  
+    color: true
   ieee-html: default
 author:
   - id: dfolio
@@ -102,7 +103,7 @@ If you want to improve the `quarto-ieee` template or need some specific features
 
 # Some random text
 For some of the remainder of this sample we will use dummy text to fill out paragraphs rather than use live text that may violate a copyright.
-\IEEEpubidadjcol\
+<!-- \IEEEpubidadjcol\ -->
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis cursus nisl eget tempor porta. Proin dapibus dictum quam a commodo. Mauris congue scelerisque eros a porta. Proin blandit nulla sapien, et pretium justo dictum non. Vivamus ultricies, elit eu posuere placerat, sapien est condimentum nisl, at tincidunt tortor dolor ac ligula. Suspendisse pulvinar libero quis eros finibus sodales. Vivamus mattis est eget imperdiet luctus. Morbi eget posuere metus. Nam egestas elit lectus, eu tincidunt odio viverra sed. Sed sit amet metus rutrum, ultricies elit in, finibus felis. Integer lobortis dui ante, eget placerat lorem laoreet eu.
 
 Nullam mi ligula, luctus a orci ut, tincidunt varius augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec sed sem risus. Nam eleifend ultrices elit, vitae posuere tellus interdum et. Nam id nisl at elit malesuada malesuada. Suspendisse viverra ipsum libero, vel pharetra sem maximus sed. Nunc vel est fringilla, rutrum diam eu, egestas quam. Vivamus lobortis blandit velit, commodo finibus mauris. Quisque vel lacus ipsum. Pellentesque quis nulla ipsum.
