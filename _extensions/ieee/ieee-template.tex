@@ -331,9 +331,9 @@ $if(keywords)$
 $endif$
 $if(colorlinks)$
   colorlinks=true,
-  linkcolor={$if(linkcolor)$$linkcolor$$else$Maroon$endif$},
-  filecolor={$if(filecolor)$$filecolor$$else$Maroon$endif$},
-  citecolor={$if(citecolor)$$citecolor$$else$Blue$endif$},
+  linkcolor={$if(color)$subsectioncolor$else$$if(linkcolor)$$linkcolor$$else$Maroon$endif$$endif$},
+  filecolor={$if(color)$subsectioncolor$else$$if(filecolor)$$filecolor$$else$Maroon$endif$$endif$},
+  citecolor={$if(color)$subsectioncolor$else$$if(citecolor)$$citecolor$$else$Blue$endif$$endif$},
   urlcolor={$if(urlcolor)$$urlcolor$$else$Blue$endif$},
 $else$
 $if(boxlinks)$
